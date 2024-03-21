@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List of clients</title>
+</head>
+<body>
+<div>
+    <h1>Список клиентов:</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>ФИО</th>
+            <th>Пол</th>
+            <th>Дата регистрации</th>
+            <th>Действие</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="client: ${clients}">
+            <td>[[${client.id}]]</td>
+            <td>
+                <a th:href="@{/clients/{clientId} (clientId=${client.id})}">
+                    [[${client.name}]]
+                </a>
+            </td>
+            <td>[[${client.getGenderAsString}]]</td>
+            <td>[[${client.getRegisteredDateAsString}]]</td>
+            <td>
+                <form method="post" th:action="@{/clients/{clientId}/delete (clientId=${client.id})}">
+                    <button class="btn form-control">Удалить</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/clients/new}">
+        Добавить нового клиента
+    </a>
+</div>
+
+</body>
+</html>

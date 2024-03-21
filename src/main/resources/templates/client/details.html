@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Client's details</title>
+</head>
+<body>
+<div>
+    <h1>Клиент: <span th:text="${client.getName()}"></span></h1>
+    <ul>
+        <li>Пол: <span th:text="${client.getGenderAsString()}"></span></li>
+        <li>Дата регистрации: <span th:text="${client.getRegisteredDateAsString()}"></span></li>
+    </ul>
+    <a th:href="@{/clients/{clientId}/edit (clientId=${client.id})}">Редактировать профиль</a>
+    <form method="post" th:action="@{/clients/{clientId}/delete (clientId=${client.id})}">
+        <button class="btn form-control">Удалить</button>
+    </form>
+    <a th:href="@{/clients}">Назад к списку</a>
+</div>
+
+</body>
+</html>

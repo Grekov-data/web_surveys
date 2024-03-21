@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>The form for editing the client</title>
+</head>
+<body>
+<h1>Регистрация нового клиента</h1>
+<form method="post" th:action="@{/clients/{clientId}/edit (clientId=${client.id})}">
+    <label>
+        ФИО:<br>
+        <input type="text" name="name" th:value="${client.name}">
+    </label><br>
+    <label>
+        Пол:<br>
+        <select class="form-select" name="gender">
+            <option th:value="true">мужской</option>
+            <option th:value="false">женский</option>
+        </select>
+    </label>
+    <button class="btn form-control">Изменить</button>
+    <a th:href="@{/clients/{clientId} (clientId=${client.id})}">
+        Назад к профилю
+    </a>
+</form>
+</body>
+</html>
